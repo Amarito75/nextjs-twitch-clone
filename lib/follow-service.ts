@@ -1,6 +1,24 @@
 import db from "./db";
 import { getSelf } from "./auth-service";
-import { revalidatePath } from "next/cache";
+
+export const getFollowedUser = async () => {
+  try {
+    const self = await getSelf();
+
+    const followedUsers = db.follow.findMany({
+      where: {
+        followerId: self.id,
+      },
+      include: {
+        following: true,
+      },
+    });
+
+    return followedUsers;
+  } catch {
+    return [];
+  }
+};
 
 export const isFollowingUser = async (id: string) => {
   try {
