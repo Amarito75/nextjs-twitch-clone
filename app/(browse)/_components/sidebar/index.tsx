@@ -3,12 +3,12 @@ import { Wrapper } from "./wrapper";
 import { Toggle, ToggleSkeleton } from "./toggle";
 import { Recommanded, RecommandedSkeleton } from "./recommanded";
 import { getRecommanded } from "@/lib/recommanded-service";
-import { getFollowedUser } from "@/lib/follow-service";
+import { getFollowedUsers } from "@/lib/follow-service";
 import { Following, FollowingSkeleton } from "./following";
 
 export const Sidebar = async () => {
   const recommanded = await getRecommanded();
-  const following = await getFollowedUser();
+  const following = await getFollowedUsers();
   return (
     <Wrapper>
       <Toggle />
